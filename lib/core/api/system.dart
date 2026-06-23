@@ -1,8 +1,9 @@
-import '../di/service_locator..dart';
 import './api_client.dart';
 
 class SystemService {
-  final ApiClient _client = getIt<ApiClient>();
+  final ApiClient _client;
+
+  SystemService(this._client);
 
   Future<String> health() async {
     final response = await _client.get('/api/health');
