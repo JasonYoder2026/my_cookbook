@@ -7,5 +7,5 @@ final GetIt getIt = GetIt.instance;
 Future<void> setupDependendies() async {
   getIt.registerLazySingleton<ApiClient>(() => ApiClient());
 
-  getIt.registerLazySingleton<API>(() => API());
+  getIt.registerLazySingleton<API>(() => API(getIt<ApiClient>()));
 }
