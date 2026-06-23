@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-import 'package:my_cookbook/core/config/api_config.dart';
+import 'package:my_cookbook/core/services/api.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
-
   @override
   State<WelcomePage> createState() => _WelcomePageState();
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  final API api = API.instance;
   Future<void> _checkApiConnection() async {
-    try {
-      final response = await http.get(
-        Uri.parse('${ApiConfig.baseUrl}/api/health'),
-      );
-      if (response.statusCode == 200) {
-        print('API is reachable');
-      } else {
-        print('API is not reachable. Status code: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error connecting to API: $e');
-    }
+    final result = await api.health.health();
+    print(result);
   }
 
   @override
