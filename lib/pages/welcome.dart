@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_cookbook/core/services/api.dart';
-import 'package:get_it/get_it.dart';
+import 'package:my_cookbook/core/api/api.dart';
+import '../core/di/service_locator..dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -9,9 +9,9 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  final API api = GetIt.instance<API>();
+  final API api = getIt<API>();
   Future<void> _checkApiConnection() async {
-    final result = await api.health.health();
+    final result = await api.system.health();
     print(result);
   }
 
